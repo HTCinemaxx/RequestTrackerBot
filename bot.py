@@ -286,6 +286,10 @@ async def requestHandler(bot:Update, msg:Message):
                             InlineKeyboardButton(
                                 "⚠️Unavailable⚠️",
                                 "unavailable"
+                            ),
+                            InlineKeyboardButton(
+                                "Request Closed ✅",
+                                "request closed"
                             )
                         ]
                     ]
@@ -349,16 +353,20 @@ async def callBackButton(bot:Update, callback_query:CallbackQuery):
                     else:   # If accepting, rejecting request tried to be done by either admin or owner
                         if data == "reject":
                             result = "REJECTED"
-                            groupResult = "has been Rejected💔."
+                            groupResult = "Already on the channel check before requesting💔."
                             button = InlineKeyboardButton("Request Rejected🚫", "rejected")
                         elif data == "done":
                             result = "COMPLETED"
-                            groupResult = "is Completed🥳."
+                            groupResult = "is Completed please visit the channel🥳."
                             button = InlineKeyboardButton("Request Completed✅", "completed")
                         elif data == "unavailable":
                             result = "UNAVAILABLE"
-                            groupResult = "has been rejected💔 due to Unavailablity🥲."
+                            groupResult = "has been rejected. Due to Unavailablity🥲."
                             button = InlineKeyboardButton("Request Rejected🚫", "rejected")
+                        elif data == "request closed":
+                            result = "Request Closed"
+                            groupResult = "has been rejected. Due to Request is Closed🥲."
+                            button = InlineKeyboardButton("Request Rejected🚫", "Request closed")
 
                         msg = callback_query.message
                         userid = 12345678
